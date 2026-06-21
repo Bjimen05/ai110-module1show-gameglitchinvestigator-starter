@@ -8,15 +8,23 @@ Answer each question in 3 to 5 sentences. Be specific and honest about what actu
 - List at least two concrete bugs you noticed at the start  
   (for example: "the hints were backwards").
 
+ The first time I ran the game, it was buggy, the show hint didn't show when I guessed wrong, the hint was wrong, as it say to go lower even though the right number was higher (ex. secret is 29, I guess 20, hint say to go lower), when you change the difficulty, the game didn't update to the right range (ex. if I change the difficulty from normal to easy, the game will display "1 - 100" instead of "1 - 20") and the history will also not update when changing difficulty.
+
 **Bug Reproduction Log**
 
 Document at least 3 bugs you found. Add rows as needed.
 
-| Input | Expected Behavior | Actual Behavior | Console Output / Error |
-|-------|-------------------|-----------------|------------------------|
-| | | | |
-| | | | |
-| | | | |
+| Input       | Expected Behavior | Actual Behavior | Console Output / Error |
+|-------------|-------------------|-----------------|------------------------|
+| 65          | Go Higher         | Go Lower        | None                   |
+|-------------|-------------------|-----------------|------------------------|
+|-5           | Incorrect Number  | Go Lower        | None                   |
+|-------------|-------------------|-----------------|------------------------|
+|Nothing      | "Enter a guess"   | "Enter a guess" | Attempts left: -56     |
+|-------------|-------------------|-----------------|------------------------|
+|Click "Easy" | Have more attempts|Less attempts    |                        |
+|             | than normal &     |than normal &    |                        |
+|             | hard              |hard             |                        |
 
 ---
 
@@ -25,6 +33,10 @@ Document at least 3 bugs you found. Add rows as needed.
 - Which AI tools did you use on this project (for example: ChatGPT, Gemini, Copilot)?
 - Give one example of an AI suggestion that was correct (including what the AI suggested and how you verified the result).
 - Give one example of an AI suggestion that was incorrect or misleading (including what the AI suggested and how you verified the result).
+
+*I use ChatGPT and Claude on this project.
+*One of an AI suggestion that was correct is how the difficulty ranges are wrong, I verfiied the result by looking at the code, which show that Hard Mode was easier than Normal.
+*One of an AI suggestion that was incorrect is it didn't include the incorrect attempt limits for each difficulty. Which I have to manually look at logic_utilis.py and the AI chat.
 
 ---
 

@@ -10,7 +10,7 @@ def get_range_for_difficulty(difficulty: str):
         return 1, 50
     return 1, 100
 
-
+# FIXME: Logic breaks here
 def parse_guess(raw: str):
     if raw is None:
         return False, None, "Enter a guess."
@@ -33,6 +33,7 @@ def check_guess(guess, secret):
     if guess == secret:
         return "Win", "🎉 Correct!"
 
+    # FIXME: Logic breaks here
     try:
         if guess > secret:
             return "Too High", "📈 Go HIGHER!"
@@ -92,6 +93,7 @@ st.sidebar.caption(f"Attempts allowed: {attempt_limit}")
 if "secret" not in st.session_state:
     st.session_state.secret = random.randint(low, high)
 
+# FIXME: Logic breaks here
 if "attempts" not in st.session_state:
     st.session_state.attempts = 1
 
@@ -106,6 +108,7 @@ if "history" not in st.session_state:
 
 st.subheader("Make a guess")
 
+# FIXME: Logic breaks here
 st.info(
     f"Guess a number between 1 and 100. "
     f"Attempts left: {attempt_limit - st.session_state.attempts}"
@@ -144,6 +147,7 @@ if st.session_state.status != "playing":
         st.error("Game over. Start a new game to try again.")
     st.stop()
 
+# FIXME: Logic breaks here
 if submit:
     st.session_state.attempts += 1
 
