@@ -35,7 +35,7 @@ Document at least 3 bugs you found. Add rows as needed.
 - Give one example of an AI suggestion that was incorrect or misleading (including what the AI suggested and how you verified the result).
 
 *I use ChatGPT and Claude on this project.
-*One of an AI suggestion that was correct is how the difficulty ranges are wrong, I verfiied the result by looking at the code, which show that Hard Mode was easier than Normal.
+*One of an AI suggestion that was correct is suggesting refactoring the logic into the logic_utils.py correctly, and I verified the result by manually testing it
 *One of an AI suggestion that was incorrect is it didn't include the incorrect attempt limits for each difficulty. Which I have to manually look at logic_utilis.py and the AI chat.
 
 ---
@@ -46,6 +46,8 @@ Document at least 3 bugs you found. Add rows as needed.
 - Describe at least one test you ran (manual or using pytest)  
   and what it showed you about your code.
 - Did AI help you design or understand any tests? How?
+
+*I first run pytest by having it create cases that test whether the secret number matches the guess number, it show me that one case the guess was greater than the secret, one case where the guess is the same as the secret, one case the guess was less than the secret and display the hints. The AI help me understand how to create edge-cases and how to focus on specific bugs.
 
 ---
 
