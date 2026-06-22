@@ -25,19 +25,24 @@ It wrote the code, ran away, and now the game is unplayable.
 
 ## 📝 Document Your Experience
 
-- [ ] Describe the game's purpose.
-- [ ] Detail which bugs you found.
-- [ ] Explain what fixes you applied.
+- [x] Describe the game's purpose.
+*The game's purpose is correctly guess the secret number in an range with limited guesses
+
+- [x] Detail which bugs you found.
+*The hints give the wrong direction, the score was updated when given a negative number/nothing.
+
+- [x] Explain what fixes you applied.
+*Refactor the logic into logic_uttils.py, 
 
 ## 📸 Demo Walkthrough
 
 Describe your fixed game in numbered steps so a reader can follow along without watching a video:
 
-1. <!-- Describe this step -->
-2. <!-- Describe this step -->
-3. <!-- Describe this step -->
-4. <!-- Describe this step -->
-5. <!-- Add more steps as needed -->
+1. The user enter a guess of 36 and press "Enter"
+2. The game returns "Go Higher"
+3. The user enter a guess of 93 and press "Enter"
+4. The game returns "Go Lower"
+5. User enter correct guess and the game ends
 
 **Screenshot** *(optional)*: <!-- Insert a screenshot of your fixed, winning game here -->
 

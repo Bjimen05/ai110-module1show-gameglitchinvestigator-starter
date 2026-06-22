@@ -25,6 +25,9 @@ Document at least 3 bugs you found. Add rows as needed.
 |Click "Easy" | Have more attempts|Less attempts    |                        |
 |             | than normal &     |than normal &    |                        |
 |             | hard              |hard             |                        |
+|-------------|-------------------|-----------------|------------------------|
+|Reset Game   |Reset the game and |Nothing happen   | Game over. Start a new |
+|             |guesses's history  |                 |game to try again.      |
 
 ---
 
@@ -54,6 +57,7 @@ Document at least 3 bugs you found. Add rows as needed.
 ## 4. What did you learn about Streamlit and state?
 
 - How would you explain Streamlit "reruns" and session state to a friend who has never used Streamlit?
+  *Streamlit "rerun" restart your code to update the page everytime you click something or interact with the app, session state is when Streamlit remember everything between rerun, it can remember things like scores, inputs, or game progress.
 
 ---
 
@@ -61,5 +65,8 @@ Document at least 3 bugs you found. Add rows as needed.
 
 - What is one habit or strategy from this project that you want to reuse in future labs or projects?
   - This could be a testing habit, a prompting strategy, or a way you used Git.
+  *One habit I will reuse is reviewing what the AI is suggesting and testing edge-cases to solve bugs
 - What is one thing you would do differently next time you work with AI on a coding task?
+  *Be more specific when describing a problem to the AI and have it solve the problem
 - In one or two sentences, describe how this project changed the way you think about AI generated code.
+  *
