@@ -76,6 +76,26 @@ _high_scores = load_high_scores()
 for _diff in ("Easy", "Normal", "Hard"):
     st.sidebar.caption(f"{_diff}: {_high_scores[_diff]}")
 
+st.sidebar.divider()
+st.sidebar.subheader("📊 Guess History")
+_history = st.session_state.get("history", [])
+if not _history:
+    st.sidebar.caption("No guesses yet.")
+else:
+    _range_size = high - low
+    for _i, _guess in enumerate(_history):
+        _distance = abs(_guess - st.session_state.secret)
+        _closeness = max(0.0, 1.0 - _distance / _range_size)
+        if _guess == st.session_state.secret:
+            _icon, _label = "🟢", "Correct!"
+        elif _guess > st.session_state.secret:
+            _icon = "🟡" if _closeness >= 0.5 else "🔴"
+            _label = "Too High"
+        else:
+            _icon = "🟡" if _closeness >= 0.5 else "🔴"
+            _label = "Too Low"
+        st.sidebar.progress(_closeness, text=f"{_icon} #{_i + 1}: {_guess} — {_label}")
+
 if "secret" not in st.session_state:
     st.session_state.secret = random.randint(low, high)
 

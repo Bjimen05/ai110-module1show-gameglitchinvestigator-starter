@@ -70,4 +70,5 @@ tests/test_game_logic.py::test_extremely_large_value_is_rejected PASSED  [100%]
 
 ## 🚀 Stretch Features
 
-- [ ] [If you choose to complete Challenge 4, describe the Enhanced UI changes here — a screenshot is optional]
+- [x] [If you choose to complete Challenge 4, describe the Enhanced UI changes here — a screenshot is optional]
+*By adding the Guess History, I also included a closeness bar which show how close a user's guess was to the secret using three colors, green meaning it was the correct guess, yellow mean it was close, and red mean it was too far from the secret
