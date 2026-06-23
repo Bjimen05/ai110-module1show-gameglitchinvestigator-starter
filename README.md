@@ -50,9 +50,23 @@ Describe your fixed game in numbered steps so a reader can follow along without 
 
 ```
 # Paste your pytest output here, e.g.:
-# pytest tests/
-# ========================= X passed in 0.XXs =========================
-```
+============================= test session starts =============================
+platform win32 -- Python 3.14.5, pytest-9.0.3, pluggy-1.6.0 -- C:\Python314\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\Brandon\Documents\GitHub\ai110-module1show-gameglitchinvestigator-starter
+plugins: anyio-4.13.0
+collecting ... collected 8 items
+
+tests/test_game_logic.py::test_winning_guess PASSED                      [ 12%]
+tests/test_game_logic.py::test_guess_too_high PASSED                     [ 25%]
+tests/test_game_logic.py::test_guess_too_low PASSED                      [ 37%]
+tests/test_game_logic.py::test_hint_message_too_high_says_go_lower PASSED [ 50%]
+tests/test_game_logic.py::test_hint_message_too_low_says_go_higher PASSED [ 62%]
+tests/test_game_logic.py::test_negative_number_is_rejected PASSED        [ 75%]
+tests/test_game_logic.py::test_decimal_is_rejected PASSED                [ 87%]
+tests/test_game_logic.py::test_extremely_large_value_is_rejected PASSED  [100%]
+
+============================== 8 passed in 0.02s ==============================
 
 ## 🚀 Stretch Features
 

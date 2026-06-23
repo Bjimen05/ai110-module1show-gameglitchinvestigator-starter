@@ -28,6 +28,8 @@ Document at least 3 bugs you found. Add rows as needed.
 |-------------|-------------------|-----------------|------------------------|
 |Reset Game   |Reset the game and |Nothing happen   | Game over. Start a new |
 |             |guesses's history  |                 |game to try again.      |
+|-------------|-------------------|-----------------|------------------------|
+|Wrong Guess  |Lose points        |Gain points      |                        |
 
 ---
 

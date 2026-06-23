@@ -7,9 +7,9 @@ def get_range_for_difficulty(difficulty: str):
     if difficulty == "Easy":
         return 1, 20
     if difficulty == "Normal":
-        return 1, 100
-    if difficulty == "Hard":
         return 1, 50
+    if difficulty == "Hard":
+        return 1, 100
     return 1, 100
 
 # FIXME: Logic breaks here
@@ -31,20 +31,16 @@ def parse_guess(raw: str):
     return True, value, None
 
 
-
+# FIXME: Logic breaks here
+# FIX: Fixed updated score calculation to ensure minimum points for winning and consistent penalty for incorrect guesses.
 def update_score(current_score: int, outcome: str, attempt_number: int):
     if outcome == "Win":
-        points = 100 - 10 * (attempt_number + 1)
+        points = 100 - 10 * (attempt_number - 1)
         if points < 10:
             points = 10
         return current_score + points
 
-    if outcome == "Too High":
-        if attempt_number % 2 == 0:
-            return current_score + 5
-        return current_score - 5
-
-    if outcome == "Too Low":
+    if outcome in ("Too High", "Too Low"):
         return current_score - 5
 
     return current_score
@@ -78,8 +74,10 @@ if "secret" not in st.session_state:
     st.session_state.secret = random.randint(low, high)
 
 # FIXME: Logic breaks here
+# FIX: Added session state initialization for attempts, score, status, and history to ensure consistent game state across reruns. As well
+#  fixed the number of attempts allowed based on difficulty level.
 if "attempts" not in st.session_state:
-    st.session_state.attempts = 1
+    st.session_state.attempts = 0
 
 if "score" not in st.session_state:
     st.session_state.score = 0
@@ -92,9 +90,8 @@ if "history" not in st.session_state:
 
 st.subheader("Make a guess")
 
-# FIXME: Logic breaks here
 st.info(
-    f"Guess a number between 1 and 100. "
+    f"Guess a number between {low} and {high}. "
     f"Attempts left: {attempt_limit - st.session_state.attempts}"
 )
 
@@ -105,18 +102,14 @@ with st.expander("Developer Debug Info"):
     st.write("Difficulty:", difficulty)
     st.write("History:", st.session_state.history)
 
-raw_guess = st.text_input(
-    "Enter your guess:",
-    key=f"guess_input_{difficulty}"
-)
-
-col1, col2, col3 = st.columns(3)
-with col1:
-    submit = st.button("Submit Guess 🚀")
-with col2:
-    new_game = st.button("New Game 🔁")
-with col3:
+col_game, col_new = st.columns([3, 1])
+with col_game:
+    with st.form(key=f"guess_form_{difficulty}", clear_on_submit=True):
+        raw_guess = st.text_input("Enter your guess:")
+        submit = st.form_submit_button("Submit Guess 🚀")
+with col_new:
     show_hint = st.checkbox("Show hint", value=True)
+    new_game = st.button("New Game 🔁")
 
 if new_game:
     st.session_state.attempts = 0

@@ -26,11 +26,15 @@
 
 > Document how you used AI to help generate or improve tests.
 
-| Edge Case | Prompt Used | AI-Suggested Test | Did It Pass? | Your Reasoning |
-|-----------|-------------|-------------------|--------------|----------------|
-| | | | | |
-| | | | | |
-| | | | | |
+| Edge Case | Prompt Used |    AI-Suggested Test             | Did It Pass? | Your Reasoning |
+|-----------|-------------|----------------------------------|--------------|----------------|
+
+| Negative number (`-5`) | "identify edge case inputs that might break the game and generate pytest cases" | `test_negative_number_is_rejected` | Yes | Min valid guess is 1; negatives are out of range and must be rejected by `parse_guess` |
+
+| Decimal input (`3.7`) | "identify edge case inputs that might break the game and generate pytest cases" | `test_decimal_is_rejected` | Yes | Original code silently truncated decimals; game only accepts whole numbers so this should be an explicit error |
+
+| Extremely large value (`99999`) | "identify edge case inputs that might break the game and generate pytest cases" | `test_extremely_large_value_is_rejected` | Yes | Values above the difficulty maximum are out of range and must be caught at input time |
+
 
 ---
 

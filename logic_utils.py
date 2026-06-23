@@ -3,13 +3,29 @@ def get_range_for_difficulty(difficulty: str):
     raise NotImplementedError("Refactor this function from app.py into logic_utils.py")
 
 
-def parse_guess(raw: str):
+# FIX: Moved from app.py and extended with low/high range validation in agent mode.
+# AI identified that the original accepted negatives, decimals, and out-of-range values silently.
+def parse_guess(raw: str, low: int, high: int):
     """
     Parse user input into an int guess.
 
     Returns: (ok: bool, guess_int: int | None, error_message: str | None)
     """
-    raise NotImplementedError("Refactor this function from app.py into logic_utils.py")
+    if raw is None or raw == "":
+        return False, None, "Enter a guess."
+
+    if "." in raw:
+        return False, None, "Enter a whole number, not a decimal."
+
+    try:
+        value = int(raw)
+    except Exception:
+        return False, None, "That is not a number."
+
+    if value < low or value > high:
+        return False, None, f"Enter a number between {low} and {high}."
+
+    return True, value, None
 
 
 # FIX: Moved check_guess from app.py into logic_utils.py using agent mode; AI identified the inverted hint messages and corrected them.
