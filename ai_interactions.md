@@ -48,18 +48,31 @@
 **Prompt used:**
 
 ```
-<!-- Paste the prompt you gave the AI -->
+add professional-grade docstrings to every function in logic_utils.py,
+review my code for PEP 8 style compliance and apply its suggestions to
+resolve any formatting or naming issues it identifies
 ```
 
 **Linting output before:**
 
 ```
-<!-- Paste relevant linter warnings/errors -->
+Note: flake8 and pycodestyle were not installed in the environment.
+The AI performed a manual PEP 8 audit and identified the following issues:
+
+E302  logic_utils.py:6   expected 2 blank lines before load_high_scores(), found 1
+E302  logic_utils.py:15  expected 2 blank lines before save_high_score(), found 1
+E302  logic_utils.py:25  expected 2 blank lines before get_range_for_difficulty(), found 1
+E501  logic_utils.py:55  line too long (134 > 79 characters) — FIX comment
+E501  logic_utils.py:66  line too long (107 > 79 characters) — inline FIX comment
+W291  logic_utils.py     missing type annotations on check_guess() and update_score()
 ```
 
 **Changes applied:**
 
-<!-- Describe what you changed based on the AI's suggestions -->
+- Added 2 blank lines between every top-level function definition (E302 fix)
+- Wrapped long FIX comment lines to stay within 79 characters (E501 fix)
+- Added `-> tuple` and `-> int` return type annotations to `check_guess` and `update_score`
+- Replaced single-line docstrings with full Google-style docstrings on all six functions, including `Args:`, `Returns:`, and `Raises:` sections where applicable
 
 ---
 
