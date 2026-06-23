@@ -1,7 +1,7 @@
 import random
 import streamlit as st
 # FIX: Imported check_guess from logic_utils after refactoring it out of app.py in agent mode.
-from logic_utils import check_guess
+from logic_utils import check_guess, load_high_scores, save_high_score
 
 def get_range_for_difficulty(difficulty: str):
     if difficulty == "Easy":
@@ -70,6 +70,12 @@ low, high = get_range_for_difficulty(difficulty)
 st.sidebar.caption(f"Range: {low} to {high}")
 st.sidebar.caption(f"Attempts allowed: {attempt_limit}")
 
+st.sidebar.divider()
+st.sidebar.subheader("🏆 High Scores")
+_high_scores = load_high_scores()
+for _diff in ("Easy", "Normal", "Hard"):
+    st.sidebar.caption(f"{_diff}: {_high_scores[_diff]}")
+
 if "secret" not in st.session_state:
     st.session_state.secret = random.randint(low, high)
 
@@ -129,14 +135,12 @@ if st.session_state.status != "playing":
 
 # FIXME: Logic breaks here
 if submit:
-    st.session_state.attempts += 1
-
     ok, guess_int, err = parse_guess(raw_guess)
 
     if not ok:
-        st.session_state.history.append(raw_guess)
         st.error(err)
     else:
+        st.session_state.attempts += 1
         st.session_state.history.append(guess_int)
 
         if st.session_state.attempts % 2 == 0:
@@ -158,10 +162,17 @@ if submit:
         if outcome == "Win":
             st.balloons()
             st.session_state.status = "won"
-            st.success(
-                f"You won! The secret was {st.session_state.secret}. "
-                f"Final score: {st.session_state.score}"
-            )
+            is_new_record = save_high_score(difficulty, st.session_state.score)
+            if is_new_record:
+                st.success(
+                    f"🏆 New High Score! The secret was {st.session_state.secret}. "
+                    f"Final score: {st.session_state.score}"
+                )
+            else:
+                st.success(
+                    f"You won! The secret was {st.session_state.secret}. "
+                    f"Final score: {st.session_state.score}"
+                )
         else:
             if st.session_state.attempts >= attempt_limit:
                 st.session_state.status = "lost"

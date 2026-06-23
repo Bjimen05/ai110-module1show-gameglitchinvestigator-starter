@@ -1,3 +1,27 @@
+import json
+import os
+
+HIGHSCORE_FILE = os.path.join(os.path.dirname(__file__), "highscores.json")
+
+def load_high_scores() -> dict:
+    """Load per-difficulty high scores from disk. Returns zeros if file missing or corrupt."""
+    try:
+        with open(HIGHSCORE_FILE, "r") as f:
+            data = json.load(f)
+        return {d: data.get(d, 0) for d in ("Easy", "Normal", "Hard")}
+    except (FileNotFoundError, json.JSONDecodeError):
+        return {"Easy": 0, "Normal": 0, "Hard": 0}
+
+def save_high_score(difficulty: str, score: int) -> bool:
+    """Save score for difficulty if it beats the current record. Returns True if a new record was set."""
+    scores = load_high_scores()
+    if score > scores.get(difficulty, 0):
+        scores[difficulty] = score
+        with open(HIGHSCORE_FILE, "w") as f:
+            json.dump(scores, f)
+        return True
+    return False
+
 def get_range_for_difficulty(difficulty: str):
     """Return (low, high) inclusive range for a given difficulty."""
     raise NotImplementedError("Refactor this function from app.py into logic_utils.py")

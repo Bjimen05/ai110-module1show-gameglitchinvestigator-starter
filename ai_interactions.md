@@ -11,14 +11,17 @@
 **What task did you give the agent?**
 
 <!-- Describe the goal you asked the agent to accomplish -->
+*I told the agent to create a new feature which is a High Score Tracker.
 
 **What did the agent do?**
 
 <!-- List the steps the agent took (files edited, commands run, etc.) -->
+*The agent add new functions and json files to the logic_utils.py, them exported to app.py, which then we created a section in the game which display the current high score of each difficulty of the user.
 
 **What did you have to verify or fix manually?**
 
 <!-- Describe anything the agent got wrong or that required human review -->
+*The new functions and section required human review to make sure that the new highest get upated until the newest highest score came, as well how it was display which came great.
 
 ---
 
